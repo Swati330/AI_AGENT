@@ -5,7 +5,7 @@ just takes a prompt, returns a response. Kept isolated so the LLM provider is sw
 
 from google import genai
 from google.genai import types
-
+from resilience.retry import retry_with_backoff
 from config.settings import settings
 from utils.logger import get_logger
 
@@ -24,6 +24,8 @@ class GeminiClient:
         self._client = genai.Client(api_key=settings.gemini_api_key)
         self._model_name = settings.gemini_model_name
 
+    @retry_with_backoff(max_attempts=3, base_delay_seconds=1.0, retryable_exceptions=(LLMError,))
+    
     def generate(self, prompt: str) -> str:
         """Send a prompt to Gemini, return the raw text response.
 
