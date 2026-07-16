@@ -24,7 +24,7 @@ class GeminiClient:
         self._client = genai.Client(api_key=settings.gemini_api_key)
         self._model_name = settings.gemini_model_name
 
-    @retry_with_backoff(max_attempts=3, base_delay_seconds=1.0, retryable_exceptions=(LLMError,))
+    @retry_with_backoff(max_attempts=4, base_delay_seconds=2.0, retryable_exceptions=(LLMError,))
     
     def generate(self, prompt: str) -> str:
         """Send a prompt to Gemini, return the raw text response.
