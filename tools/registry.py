@@ -40,7 +40,12 @@ def build_default_registry() -> ToolRegistry:
     tools registered. This is the ONE place you touch when adding a new tool."""
     registry = ToolRegistry()
     registry.register(CalculatorTool())
-    # When WeatherTool and WikipediaTool are ready, add them here:
-    # registry.register(WeatherTool())
-    # registry.register(WikipediaTool())
+   #later wiki and weather added here
+    return registry
+from tools.weather import WeatherTool
+
+def build_default_registry() -> ToolRegistry:
+    registry = ToolRegistry()
+    registry.register(CalculatorTool())
+    registry.register(WeatherTool())
     return registry
