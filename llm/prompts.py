@@ -26,3 +26,9 @@ For unknown: extracted_entities should be an empty object {{}}.
 User query: "{query}"
 
 JSON response:"""
+RESPONSE_GENERATION_PROMPT = """You are a helpful assistant. Convert this tool output into a short, natural, conversational answer for the user. Do not mention "tool", "data", "JSON", or any technical terms — just answer naturally like a helpful person would.
+
+Tool used: {tool_name}
+Data: {data}
+
+Natural answer:"""
