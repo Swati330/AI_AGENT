@@ -106,7 +106,7 @@ def build_default_orchestrator() -> Orchestrator:
     return Orchestrator(
         intent_understander=IntentUnderstander(llm_client),
         planner=Planner(),
-        tool_registry=build_default_registry(),
+        tool_registry=build_default_registry(llm_client),
         validator=Validator(),
         responder=Responder(llm_client),
     )

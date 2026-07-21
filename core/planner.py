@@ -42,11 +42,13 @@ class Planner:
         )
 
     def _build_params(self, intent: Intent, tool: ToolName) -> dict:
-        """Translate extracted_entities into the specific param shape each tool expects."""
         if tool == ToolName.CALCULATOR:
             return {"expression": intent.extracted_entities.get("expression", "")}
         if tool == ToolName.WEATHER:
             return {"city": intent.extracted_entities.get("city", "")}
         if tool == ToolName.WIKIPEDIA:
-            return {"topic": intent.extracted_entities.get("topic", "")}
+            return {
+            "topic": intent.extracted_entities.get("topic", ""),
+            "question": intent.raw_query,  # the ORIGINAL full question, for Hop 2 extraction
+        }
         return {}

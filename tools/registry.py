@@ -4,8 +4,11 @@ Adding a new tool = write one class + one registration line here. Nothing else c
 """
 
 from core.contracts import ToolName
+from llm.client import GeminiClient
 from tools.base import AbstractTool
 from tools.calculator import CalculatorTool
+from tools.weather import WeatherTool
+from tools.wikipedia import WikipediaTool
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -35,17 +38,13 @@ class ToolRegistry:
         return list(self._tools.keys())
 
 
-def build_default_registry() -> ToolRegistry:
+def build_default_registry(llm_client: GeminiClient) -> ToolRegistry:
     """Factory function: builds and returns the registry with all current
-    tools registered. This is the ONE place you touch when adding a new tool."""
-    registry = ToolRegistry()
-    registry.register(CalculatorTool())
-   #later wiki and weather added here
-    return registry
-from tools.weather import WeatherTool
-
-def build_default_registry() -> ToolRegistry:
+    tools registered. WikipediaTool needs the llm_client for Hop 2
+    (fact extraction), so it's passed in rather than created internally.
+    This is the ONE place you touch when adding a new tool."""
     registry = ToolRegistry()
     registry.register(CalculatorTool())
     registry.register(WeatherTool())
+    registry.register(WikipediaTool(llm_client))
     return registry
