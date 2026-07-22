@@ -5,5 +5,5 @@ pydantic-settings
 python-dotenv
 google-genai
 requests
-wikipedia
+wikipedia-api
 pytest
