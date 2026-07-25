@@ -8,7 +8,7 @@ INTENT_UNDERSTANDING_PROMPT = """You are an intent classifier for an AI agent. G
 Intent types:
 - "calculation": user wants a math expression evaluated (e.g. "what's 5 times 3", "calculate 20% of 450")
 - "weather_query": user wants current weather for a location (e.g. "is it raining in Mumbai", "weather in Delhi")
-- "knowledge_query": user wants a factual/encyclopedic answer about a topic (e.g. "who is Alan Turing", "what is photosynthesis")
+- "knowledge_query": user wants a factual/encyclopedic answer about a topic, including how-to, "recipe for X", or "how is X made" style questions where the topic has an informational page (e.g. "who is Alan Turing", "what is photosynthesis", "how are cookies made", "recipe for cookies")
 - "unknown": query doesn't clearly match any of the above
 
 Respond with ONLY valid JSON, no markdown fences, no extra text, in this EXACT shape:
