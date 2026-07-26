@@ -71,7 +71,7 @@ uvicorn api.main:app --reload
 Server runs at `http://127.0.0.1:8000`.
 
 - Interactive API docs: `http://127.0.0.1:8000/docs`
-- Chat frontend: open `agent_chat.html` directly in a browser (requires the server to be running)
+- Chat frontend: open `frontend/agent_chat.html` directly in a browser (requires the server to be running)
 
 ## Example queries
 
