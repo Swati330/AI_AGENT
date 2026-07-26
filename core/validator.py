@@ -18,6 +18,7 @@ class Validator:
         self._checkers = {
             ToolName.CALCULATOR: self._check_calculator,
             ToolName.WEATHER: self._check_weather,
+            ToolName.WIKIPEDIA: self._check_wikipedia,
         }
 
     def validate(self, result: ToolResult) -> ValidatedResult:
@@ -60,6 +61,15 @@ class Validator:
         if temp is None or not (-90 <= temp <= 60):
             return False, f"Temperature out of plausible range: {temp}"
         return True, "Weather data within plausible range"
+
+    def _check_wikipedia(self, result: ToolResult) -> tuple[bool, str]:
+        if not result.data or "topic" not in result.data:
+            return False, "Missing topic in wikipedia output"
+        if "message" in result.data:
+            return True, "Message (disambiguation/missing/degraded), valid to pass through"
+        if not result.data.get("summary"):
+            return False, "Empty summary returned"
+        return True, "Summary content present"
 
     def _default_check(self, result: ToolResult) -> tuple[bool, str]:
         if not result.data:

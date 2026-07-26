@@ -24,7 +24,7 @@ _ALLOWED_OPERATORS = {
     ast.Div: operator.truediv,
     ast.Pow: operator.pow,
     ast.Mod: operator.mod,
-    ast.USub: operator.neg,  # unary minus, e.g. -5
+    ast.USub: operator.neg, 
 }
 
 
